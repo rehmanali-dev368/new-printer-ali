@@ -1,0 +1,38 @@
+{
+  "buildFiles": [
+    "F:\\office projects\\smart printer new ali\\new_printer\\third_party\\pdf_render\\android\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "E:\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "F:\\office projects\\smart printer new ali\\new_printer\\third_party\\pdf_render\\android\\.cxx\\Debug\\5305r1wx\\arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "E:\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "F:\\office projects\\smart printer new ali\\new_printer\\third_party\\pdf_render\\android\\.cxx\\Debug\\5305r1wx\\arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "bbhelper::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "arm64-v8a",
+      "artifactName": "bbhelper",
+      "output": "F:\\office projects\\smart printer new ali\\new_printer\\build\\pdf_render\\intermediates\\cxx\\Debug\\5305r1wx\\obj\\arm64-v8a\\libbbhelper.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "E:\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "E:\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

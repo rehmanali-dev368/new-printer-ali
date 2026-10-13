@@ -1,0 +1,50 @@
+import org.gradle.api.tasks.compile.JavaCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+val newBuildDir: Directory =
+    rootProject.layout.buildDirectory
+        .dir("../../build")
+        .get()
+rootProject.layout.buildDirectory.value(newBuildDir)
+
+subprojects {
+    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
+    project.layout.buildDirectory.value(newSubprojectBuildDir)
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory)
+}
+
+// Plugin modules pick different Java and Kotlin targets. Read the Java
+// target after it is finalized and compile Kotlin for the same JVM.
+gradle.projectsEvaluated {
+    subprojects {
+        if (name == "app") {
+            return@subprojects
+        }
+        val javaTaskTarget = tasks.withType<JavaCompile>().firstOrNull()?.targetCompatibility
+        val matchedTarget = when (javaTaskTarget) {
+            "1.8", "8" -> JvmTarget.JVM_1_8
+            "11" -> JvmTarget.JVM_11
+            "21" -> JvmTarget.JVM_21
+            else -> JvmTarget.JVM_17
+        }
+        tasks.withType<KotlinCompile>().configureEach {
+            compilerOptions {
+                jvmTarget.set(matchedTarget)
+            }
+        }
+    }
+}

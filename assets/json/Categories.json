@@ -1,0 +1,106 @@
+{
+    "categories": [
+        {
+            "categoryName": "Printables",
+            "categoryTitle": "Printables",
+            "categories": [
+                {
+                    "catName": "Halloween",
+                    "catTitle": "Halloween",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "Birthday",
+                    "catTitle": "Birthday",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "FathersDay",
+                    "catTitle": "Father's Day",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "MothersDay",
+                    "catTitle": "Mother's Day",
+                    "isNew": false,
+                    "templateCount": 12
+                }
+            ]
+        },
+        {
+            "categoryName": "Labels",
+            "categoryTitle": "Labels",
+            "categories": [
+                {
+                    "catName": "Beauty",
+                    "catTitle": "Beauty",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "Birthday",
+                    "catTitle": "Birthday",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "Sale",
+                    "catTitle": "Sale",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "FastFood",
+                    "catTitle": "Fast Food",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "Fitness",
+                    "catTitle": "Fitness",
+                    "isNew": false,
+                    "templateCount": 12
+                }
+            ]
+        },
+        {
+            "categoryName": "Stickers",
+            "categoryTitle": "Stickers",
+            "categories": [
+                {
+                    "catName": "Birthday",
+                    "catTitle": "Birthday",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "Black Friday",
+                    "catTitle": "Black Friday",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "FathersDay",
+                    "catTitle": "Father's Day",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "MothersDay",
+                    "catTitle": "Mother's Day",
+                    "isNew": false,
+                    "templateCount": 12
+                },
+                {
+                    "catName": "NewYear",
+                    "catTitle": "New Year",
+                    "isNew": false,
+                    "templateCount": 12
+                }
+            ]
+        }
+    ]
+}
