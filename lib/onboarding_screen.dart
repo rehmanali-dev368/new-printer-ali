@@ -5,6 +5,8 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 import 'app_shell.dart';
+import 'pro/pro_controller.dart';
+import 'pro/upgrade_pro_screen.dart';
 
 class OnboardingStore {
   static Future<bool> seen() async {
@@ -71,8 +73,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void _finish() {
     OnboardingStore.markSeen();
+    final next = ProController.instance.isPro
+        ? const AppShell()
+        : const UpgradeProScreen(openHomeOnClose: true);
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const AppShell()),
+      MaterialPageRoute(builder: (_) => next),
     );
   }
 

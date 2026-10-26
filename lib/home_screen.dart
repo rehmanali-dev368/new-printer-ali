@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'ads/banner_ad_widget.dart';
-// import 'app_feedback.dart';
 import 'home_flows.dart';
 import 'page_style.dart';
+import 'pro/pro_controller.dart';
+import 'pro/pro_navigation.dart';
 import 'settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -112,6 +113,45 @@ class _HomeHeader extends StatelessWidget {
               ),
             ),
           ),
+          ListenableBuilder(
+            listenable: ProController.instance,
+            builder: (context, _) {
+              if (ProController.instance.isPro) {
+                return const SizedBox.shrink();
+              }
+              return Padding(
+                padding: const EdgeInsets.only(right: 4),
+                child: TextButton.icon(
+                  style: TextButton.styleFrom(
+                    foregroundColor: const Color(0xFF2F8CFF),
+                    side: const BorderSide(color: Color(0xFF2F8CFF)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
+                    minimumSize: const Size(0, 36),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                  onPressed: () => openUpgradePro(context),
+                  icon: const ImageIcon(
+                    AssetImage('assets/images/Vector.png'),
+                    size: 18,
+                    color: Color(0xFF2F8CFF),
+                  ),
+                  label: const Text(
+                    'PRO',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
           IconButton(
             tooltip: 'Settings',
             visualDensity: VisualDensity.compact,
@@ -127,57 +167,6 @@ class _HomeHeader extends StatelessWidget {
     );
   }
 }
-
-// class _ProButton extends StatelessWidget {
-//   const _ProButton();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return GestureDetector(
-//       onTap: () => _showComingSoon(context, 'Pro'),
-//       child: Container(
-//         width: 42,
-//         height: 42,
-//         decoration: const BoxDecoration(
-//           shape: BoxShape.circle,
-//           gradient: RadialGradient(
-//             radius: 0.5,
-//             colors: [Color(0xFFD3C3C3), Color(0xFFFFFFFF)],
-//           ),
-//           border: Border.fromBorderSide(
-//             BorderSide(color: Color(0xFFD4D4D4)),
-//           ),
-//           boxShadow: [
-//             BoxShadow(
-//               color: Color(0x0F000000),
-//               blurRadius: 12,
-//             ),
-//           ],
-//         ),
-//         child: const Center(
-//           child: SizedBox(
-//             width: 30,
-//             height: 26,
-//             child: Stack(
-//               children: [
-//                 Positioned(
-//                   left: 5.09,
-//                   top: 5.37,
-//                   width: 20.625164031982422,
-//                   height: 14.783540725708008,
-//                   child: Image(
-//                     image: AssetImage('assets/icons/crown.png'),
-//                     fit: BoxFit.fill,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class _ActionGrid extends StatelessWidget {
   const _ActionGrid({required this.actions});
@@ -319,11 +308,3 @@ class _PrinterAction {
   final Color color;
   final String icon;
 }
-
-// void _showComingSoon(BuildContext context, String title) {
-//   AppPopup.notice(
-//     context,
-//     title: title,
-//     message: 'This option is coming soon.',
-//   );
-// }

@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "188358947439",
+    "project_id": "all-writing-apps",
+    "storage_bucket": "all-writing-apps.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188358947439:android:54a8d11f051d15d504d39a",
+        "android_client_info": {
+          "package_name": "com.ai.quiz.homework.helper.math.solver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvjecYJoLDYpGZnFBEUHfshdN51dk6fiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188358947439:android:e40dfe4444f6b63704d39a",
+        "android_client_info": {
+          "package_name": "com.grammar.checker.ai.detector"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvjecYJoLDYpGZnFBEUHfshdN51dk6fiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188358947439:android:d40b931ad839a7e704d39a",
+        "android_client_info": {
+          "package_name": "com.notebook.ai.notes.notepad"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvjecYJoLDYpGZnFBEUHfshdN51dk6fiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188358947439:android:fe9a4e191038531104d39a",
+        "android_client_info": {
+          "package_name": "com.plagiarsim.checker.ai.dedector"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvjecYJoLDYpGZnFBEUHfshdN51dk6fiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188358947439:android:a7abb5a9c2d2d90e04d39a",
+        "android_client_info": {
+          "package_name": "com.smart.printer.app.wireless.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvjecYJoLDYpGZnFBEUHfshdN51dk6fiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

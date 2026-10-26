@@ -4,6 +4,8 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("dev.flutter.flutter-gradle-plugin")
+    // Requires android/app/google-services.json (package must match applicationId).
+    id("com.google.gms.google-services")
 }
 
 val keystoreProperties = Properties()
@@ -88,4 +90,15 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+configurations.all {
+    resolutionStrategy {
+        // Play Console requires Billing Library 8.0.0+; force 9.x per Google recommendation.
+        force("com.android.billingclient:billing:9.1.0")
+    }
+}
+
+dependencies {
+    implementation("com.android.billingclient:billing:9.1.0")
 }

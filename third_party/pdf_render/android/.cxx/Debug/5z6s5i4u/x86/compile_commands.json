@@ -1,0 +1,7 @@
+[
+{
+  "directory": "F:/GitHub2/new-printer-ali/third_party/pdf_render/android/.cxx/Debug/5z6s5i4u/x86",
+  "command": "E:\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=i686-none-linux-android21 --sysroot=E:/Android/Sdk/ndk/28.2.13676358/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dbbhelper_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -DBUILD_FOR_ANDROID -o CMakeFiles\\bbhelper.dir\\c++\\directBufferAndroid.cpp.o -c F:\\GitHub2\\new-printer-ali\\third_party\\pdf_render\\android\\c++\\directBufferAndroid.cpp",
+  "file": "F:\\GitHub2\\new-printer-ali\\third_party\\pdf_render\\android\\c++\\directBufferAndroid.cpp"
+}
+]

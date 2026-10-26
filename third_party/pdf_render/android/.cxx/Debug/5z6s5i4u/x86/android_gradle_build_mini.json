@@ -1,0 +1,27 @@
+{
+  "buildFiles": [
+    "F:\\GitHub2\\new-printer-ali\\third_party\\pdf_render\\android\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "E:\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "F:\\GitHub2\\new-printer-ali\\third_party\\pdf_render\\android\\.cxx\\Debug\\5z6s5i4u\\x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "E:\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "F:\\GitHub2\\new-printer-ali\\third_party\\pdf_render\\android\\.cxx\\Debug\\5z6s5i4u\\x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "bbhelper::@6890427a1f51a3e7e1df": {
+      "artifactName": "bbhelper",
+      "abi": "x86",
+      "output": "F:\\GitHub2\\new-printer-ali\\build\\pdf_render\\intermediates\\cxx\\Debug\\5z6s5i4u\\obj\\x86\\libbbhelper.so",
+      "runtimeFiles": []
+    }
+  }
+}

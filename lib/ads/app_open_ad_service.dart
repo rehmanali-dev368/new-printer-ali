@@ -4,7 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../pro/pro_controller.dart';
 import 'ad_service.dart';
+import 'remote_config_service.dart';
 
 class AppOpenAdManager {
   AppOpenAdManager._();
@@ -15,7 +17,16 @@ class AppOpenAdManager {
   bool _loading = false;
   Completer<bool>? _loadCompleter;
 
+  bool get _adsAllowed =>
+      !ProController.instance.isPro && RemoteConfigService.instance.showAds;
+
   Future<bool> loadAd() {
+    if (!_adsAllowed) {
+      _appOpenAd?.dispose();
+      _appOpenAd = null;
+      return Future.value(false);
+    }
+
     if (_appOpenAd != null) {
       return Future.value(true);
     }
@@ -67,7 +78,7 @@ class AppOpenAdManager {
   }
 
   Future<bool> showAdIfAvailable({Duration? loadTimeout}) async {
-    if (_showing) {
+    if (!_adsAllowed || _showing) {
       return false;
     }
 
@@ -89,18 +100,14 @@ class AppOpenAdManager {
         shown.dispose();
         _appOpenAd = null;
         _showing = false;
-        if (!completer.isCompleted) {
-          completer.complete();
-        }
+        if (!completer.isCompleted) completer.complete();
         loadAd();
       },
       onAdFailedToShowFullScreenContent: (shown, error) {
         shown.dispose();
         _appOpenAd = null;
         _showing = false;
-        if (!completer.isCompleted) {
-          completer.complete();
-        }
+        if (!completer.isCompleted) completer.complete();
         loadAd();
       },
       onAdShowedFullScreenContent: (_) {
@@ -120,9 +127,7 @@ class AppOpenAdManager {
       try {
         ad.dispose();
       } catch (_) {}
-      if (!completer.isCompleted) {
-        completer.complete();
-      }
+      if (!completer.isCompleted) completer.complete();
       loadAd();
       return false;
     }

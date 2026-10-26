@@ -2,10 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../pro/pro_controller.dart';
 import 'ad_service.dart';
+import 'remote_config_service.dart';
 
-/// Same visual style as Smart-printer-appsrepublic:
+/// Same visual style as Smart-printer-3rd:
 /// white strip, grey top/bottom borders, shimmer skeleton while loading.
+/// Hidden for Pro users or when Remote Config ads are OFF.
 class BannerAdWidget extends StatefulWidget {
   const BannerAdWidget({
     super.key,
@@ -24,19 +27,42 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
   int _loadAttempts = 0;
   static const int _maxLoadAttempts = 3;
 
+  bool get _adsAllowed =>
+      !ProController.instance.isPro && RemoteConfigService.instance.showAds;
+
   @override
   void initState() {
     super.initState();
-    _loadBanner();
+    ProController.instance.addListener(_onProChanged);
+    if (_adsAllowed) {
+      _loadBanner();
+    }
   }
 
   @override
   void dispose() {
+    ProController.instance.removeListener(_onProChanged);
     _bannerAd?.dispose();
     super.dispose();
   }
 
+  void _onProChanged() {
+    if (!mounted) return;
+    if (!_adsAllowed) {
+      _bannerAd?.dispose();
+      _bannerAd = null;
+      _isLoaded = false;
+      setState(() {});
+      return;
+    }
+    if (_bannerAd == null) {
+      _loadBanner();
+    }
+    setState(() {});
+  }
+
   void _loadBanner() {
+    if (!_adsAllowed) return;
     _bannerAd?.dispose();
     _bannerAd = null;
     _isLoaded = false;
@@ -89,6 +115,10 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_adsAllowed) {
+      return const SizedBox.shrink();
+    }
+
     final bannerAd = _bannerAd;
 
     return Container(

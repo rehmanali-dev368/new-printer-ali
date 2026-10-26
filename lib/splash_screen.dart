@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'ads/app_open_ad_service.dart';
 import 'app_shell.dart';
 import 'onboarding_screen.dart' show OnboardingScreen, OnboardingStore;
+import 'pro/pro_controller.dart';
+import 'pro/upgrade_pro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -73,10 +75,26 @@ class _SplashScreenState extends State<SplashScreen> {
     if (!mounted) {
       return;
     }
+
+    // First launch → onboarding. Every later open → Pro then Home (unless Pro).
+    if (!seen) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const OnboardingScreen()),
+      );
+      return;
+    }
+
+    if (!ProController.instance.isPro) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => const UpgradeProScreen(openHomeOnClose: true),
+        ),
+      );
+      return;
+    }
+
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (_) => seen ? const AppShell() : const OnboardingScreen(),
-      ),
+      MaterialPageRoute(builder: (_) => const AppShell()),
     );
   }
 
@@ -87,17 +105,12 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SizedBox.expand(
         child: Stack(
           children: [
-            Positioned(
-              top: 168,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Image(
-                  image: AssetImage('assets/images/splashicon.png'),
-                  width: 176,
-                  height: 176,
-                  fit: BoxFit.contain,
-                ),
+            Center(
+              child: Image(
+                image: AssetImage('assets/images/splashicon.png'),
+                width: 176,
+                height: 176,
+                fit: BoxFit.contain,
               ),
             ),
             Positioned(

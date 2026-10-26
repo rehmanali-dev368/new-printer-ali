@@ -3,10 +3,16 @@ import 'package:flutter/services.dart';
 
 import 'ads/ad_service.dart';
 import 'ads/app_open_ad_service.dart';
+import 'ads/remote_config_service.dart';
+import 'ads/resume_app_open_ad_service.dart';
+import 'pro/pro_controller.dart';
 import 'splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -14,8 +20,22 @@ Future<void> main() async {
       statusBarBrightness: Brightness.light,
     ),
   );
+
+  await ProController.instance.init();
+  // Fetch Remote Config before ads so isAppZonePrinterAdsON can block them.
+  await RemoteConfigService.instance.init();
+  debugPrint(
+    '[Startup] Firebase RC connected=${RemoteConfigService.instance.connected} '
+    'source=${RemoteConfigService.instance.valueSource} '
+    'isAppZonePrinterAdsON=${RemoteConfigService.instance.showAds}',
+  );
   await AdService.instance.initialize();
-  AppOpenAdManager.instance.loadAd();
+  if (!ProController.instance.isPro &&
+      RemoteConfigService.instance.showAds) {
+    AppOpenAdManager.instance.loadAd();
+  }
+  MinimizeAppOpenAdService.instance.start();
+
   runApp(const MyApp());
 }
 

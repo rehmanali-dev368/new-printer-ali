@@ -9,6 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import '../ads/ad_service.dart';
 import '../ads/banner_ad_widget.dart';
 import '../app_feedback.dart';
+import '../pro/pro_controller.dart';
+import '../pro/pro_navigation.dart';
 import 'printable_editor_screen.dart';
 
 Future<void> _openPrintable(BuildContext context, String imageUrl) async {
@@ -141,6 +143,7 @@ class _PrintablesScreenState extends State<PrintablesScreen> {
         foregroundColor: Colors.black,
         surfaceTintColor: Colors.white,
         elevation: 0,
+        actions: const [_ProChip()],
       ),
       body: FutureBuilder<List<_CategoryGroup>>(
         future: _categoriesFuture,
@@ -199,6 +202,47 @@ class _PrintablesScreenState extends State<PrintablesScreen> {
           );
         },
       ),
+    );
+  }
+}
+
+class _ProChip extends StatelessWidget {
+  const _ProChip();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListenableBuilder(
+      listenable: ProController.instance,
+      builder: (context, _) {
+        if (ProController.instance.isPro) {
+          return const SizedBox.shrink();
+        }
+        return Padding(
+          padding: const EdgeInsets.only(right: 8),
+          child: TextButton.icon(
+            style: TextButton.styleFrom(
+              foregroundColor: const Color(0xFF2F8CFF),
+              side: const BorderSide(color: Color(0xFF2F8CFF)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              minimumSize: const Size(0, 36),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            onPressed: () => openUpgradePro(context),
+            icon: const ImageIcon(
+              AssetImage('assets/images/Vector.png'),
+              size: 18,
+              color: Color(0xFF2F8CFF),
+            ),
+            label: const Text(
+              'PRO',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
+            ),
+          ),
+        );
+      },
     );
   }
 }
